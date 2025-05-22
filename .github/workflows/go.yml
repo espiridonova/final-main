@@ -1,5 +1,3 @@
-Теперь добавьте конфигурацию в файл push.yaml:
-
 name: Go
 on: push
 jobs:
