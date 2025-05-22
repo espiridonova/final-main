@@ -1,15 +1,17 @@
+Теперь добавьте конфигурацию в файл push.yaml:
+
 name: Go
-
-on:
-  push:
-    branches: ["main"]
-
+on: push
 jobs:
-
-  tests:
+  test:
     runs-on: ubuntu-latest
+    container: golang:1.23.1
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v4
-      - name: Test
-        run: go test -v ./...
+      - uses: actions/checkout@v4
+
+      - name: Run Unit Tests
+        run: GOOS=linux GOARCH=amd64 go test
+
+      - name: Vet
+        run: |
+          go vet ./....
